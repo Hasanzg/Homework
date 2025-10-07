@@ -1,0 +1,42 @@
+{% extends 'store/base.html' %}
+{% block content %}
+  <h1 class="mb-3">All Videos</h1>
+
+  {% if videos %}
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead>
+          <tr>
+            <th>Movie ID</th>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Year</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for v in videos %}
+          <tr>
+            <td>{{ v.movie_id }}</td>
+            <td>{{ v.movie_title }}</td>
+            <td>{{ v.movie_genre }}</td>
+            <td>{{ v.release_year }}</td>
+            <td>
+              <a class="btn btn-sm btn-outline-primary" href="{% url 'video_detail' v.pk %}">View</a>
+              <a class="btn btn-sm btn-outline-secondary" href="{% url 'video_update' v.pk %}">Edit</a>
+              <a class="btn btn-sm btn-outline-danger" href="{% url 'video_delete' v.pk %}">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p>No videos yet.</p>
+  {% endif %}
+
+  <!-- Button moved here -->
+  <div class="mt-3">
+    <a href="{% url 'video_create' %}" class="btn btn-primary">Add New Video</a>
+  </div>
+{% endblock %}

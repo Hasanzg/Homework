@@ -1,0 +1,17 @@
+{% extends 'store/base.html' %}
+{% block content %}
+  <h1>{{ video.movie_title }} <small class="text-muted">({{ video.release_year }})</small></h1>
+  <dl class="row">
+    <dt class="col-sm-3">Movie ID</dt><dd class="col-sm-9">{{ video.movie_id }}</dd>
+    <dt class="col-sm-3">Director</dt><dd class="col-sm-9">{{ video.director_name }}</dd>
+    <dt class="col-sm-3">Actor 1</dt><dd class="col-sm-9">{{ video.actor1_name }}</dd>
+    <dt class="col-sm-3">Actor 2</dt><dd class="col-sm-9">{{ video.actor2_name }}</dd>
+    <dt class="col-sm-3">Genre</dt><dd class="col-sm-9">{{ video.get_movie_genre_display }}</dd>
+    <dt class="col-sm-3">Duration</dt><dd class="col-sm-9">{{ video.DurationMinutes }}</dd>
+    <dt class="col-sm-3">Country</dt><dd class="col-sm-9">{{ video.Country }}</dd>
+    <dt class="col-sm-3">Rating</dt><dd class="col-sm-9">{{ video.Rating }}</dd>
+  </dl>
+  <a class="btn btn-secondary" href="{% url 'video_update' video.pk %}">Edit</a>
+  <a class="btn btn-danger" href="{% url 'video_delete' video.pk %}">Delete</a>
+  <a class="btn btn-link" href="{% url 'video_list' %}">Back to list</a>
+{% endblock %}
